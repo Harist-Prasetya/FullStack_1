@@ -1,0 +1,115 @@
+/* CONTAINER */
+.streak-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
+
+/* HERO CARD (FIRE) */
+.streak-hero {
+  background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%); /* Dark Theme biar api nyala */
+  border-radius: 24px;
+  padding: 40px 20px;
+  text-align: center;
+  color: white;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ANIMASI API */
+@keyframes flame-pulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.6)); }
+  50% { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(249, 115, 22, 0.9)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.6)); }
+}
+
+.flame-icon {
+  animation: flame-pulse 2s infinite ease-in-out;
+  color: #f97316; /* Orange Api */
+  margin-bottom: 10px;
+}
+
+.streak-count {
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(to bottom, #fbbf24, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.streak-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fbbf24;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* TODAY STATUS CARD */
+.today-card {
+  background: white;
+  padding: 24px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  border: 1px solid #f1f5f9;
+  margin-bottom: 24px;
+}
+
+.limit-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 16px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease, background-color 0.3s;
+}
+
+/* CALENDAR GRID */
+.calendar-card {
+  background: white;
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid #f1f5f9;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.day-box {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  background: #f8fafc;
+  border: 1px solid transparent;
+}
+
+.day-box.success { background: #ecfdf5; color: #166534; border-color: #bbf7d0; }
+.day-box.fail { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+.day-box.today { border: 2px solid var(--primary); }
+
+.status-icon { margin-bottom: 4px; }

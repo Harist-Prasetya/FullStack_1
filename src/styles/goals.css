@@ -1,0 +1,220 @@
+/* ===== Goals Page Container ===== */
+.goals-container {
+  max-width: 850px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
+
+/* ===== Header ===== */
+.goals-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.goals-title {
+  font-size: 26px;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== Add Button ===== */
+.add-goal-btn {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(99,102,241,0.4);
+}
+
+.add-goal-btn:hover {
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 6px 20px rgba(99,102,241,0.6);
+}
+
+/* ===== Form Card ===== */
+.goal-form-card {
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+  border: 1px solid #c7d2fe;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 25px;
+  animation: fadeSlide 0.4s ease;
+}
+
+.goal-form-card input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #c7d2fe;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.goal-form-card input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
+}
+
+.goal-form-card button {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.goal-form-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(99,102,241,0.4);
+}
+
+/* ===== Goal Card ===== */
+.goal-card {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+  transition: all 0.3s ease;
+}
+
+.goal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+}
+
+/* ===== Progress Bar ===== */
+.goal-progress-bg {
+  width: 100%;
+  height: 12px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.goal-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width 0.6s ease;
+}
+
+/* ===== Text Section ===== */
+.goal-amounts {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* ===== Animation ===== */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.goals-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.summary-card {
+  background: white;
+  padding: 15px;
+  border-radius: 16px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid #f1f5f9;
+}
+
+.summary-card.highlight {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+}
+
+.goals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.goal-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.goal-title {
+  display: flex;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.goal-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.delete-btn {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+.delete-btn:hover {
+  opacity: 1;
+  color: red;
+}
+
+.completed-badge {
+  background: #dcfce7;
+  color: #166534;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.goal-remaining {
+  margin-top: 8px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.success-text {
+  color: #16a34a;
+  font-weight: bold;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 50px 0;
+  opacity: 0.6;
+}

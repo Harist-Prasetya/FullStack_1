@@ -1,0 +1,134 @@
+/* src/styles/forms.css */
+
+/* --- LAYOUT UTAMA --- */
+.page-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
+
+.split-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .split-layout {
+    grid-template-columns: 1.5fr 1fr; /* Kiri Form, Kanan Summary */
+    align-items: start;
+  }
+}
+
+/* --- GLASS CARD FORM --- */
+.form-card {
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.02);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header Warna Warni */
+.form-header { margin-bottom: 24px; position: relative; z-index: 2; }
+.form-title { font-size: 24px; font-weight: 800; display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.form-subtitle { font-size: 14px; color: var(--text-muted); }
+
+/* Decoration Blob */
+.bg-blob {
+  position: absolute; top: -50px; right: -50px; width: 150px; height: 150px;
+  border-radius: 50%; opacity: 0.1; z-index: 1; filter: blur(40px);
+}
+.blob-green { background: var(--success); }
+.blob-red { background: var(--danger); }
+
+/* --- INPUTS --- */
+.input-group { margin-bottom: 20px; }
+.input-label { display: block; font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; }
+
+/* Hero Amount Input */
+.amount-wrapper {
+  position: relative;
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 16px;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+  display: flex; align-items: center;
+}
+.amount-wrapper:focus-within { border-color: var(--primary); background: white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1); }
+
+.currency-symbol { font-size: 20px; font-weight: 700; color: var(--text-muted); margin-right: 8px; }
+.amount-input {
+  width: 100%; border: none; background: transparent; font-size: 28px; font-weight: 800; outline: none; color: var(--text-main);
+}
+
+/* Standard Input */
+.modern-input {
+  width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid #e2e8f0; font-size: 14px; transition: 0.2s;
+}
+.modern-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1); }
+
+/* --- CATEGORY GRID SELECTOR --- */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+}
+
+.category-item {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  padding: 12px; border-radius: 12px; border: 1px solid #f1f5f9; background: white;
+  cursor: pointer; transition: all 0.2s;
+}
+
+.category-item:hover { transform: translateY(-2px); border-color: var(--primary); }
+.category-item.active { background: #eff6ff; border-color: var(--primary); color: var(--primary); }
+.cat-icon { font-size: 20px; }
+.cat-name { font-size: 11px; font-weight: 600; text-align: center; }
+
+/* Active State Colors */
+.category-item.active.income-theme { background: #ecfdf5; border-color: var(--success); color: var(--success); }
+.category-item.active.expense-theme { background: #fef2f2; border-color: var(--danger); color: var(--danger); }
+
+/* --- SIDEBAR SUMMARY --- */
+.summary-card {
+  background: white; border-radius: 24px; padding: 24px;
+  border: 1px solid #f1f5f9; height: fit-content;
+}
+.summary-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+.recent-list { display: flex; flex-direction: column; gap: 12px; }
+.recent-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 12px; border-bottom: 1px solid #f8fafc;
+}
+.recent-item:last-child { border-bottom: none; }
+.recent-info p { font-size: 13px; font-weight: 600; }
+.recent-info span { font-size: 11px; color: var(--text-muted); }
+.recent-amount { font-weight: 700; font-size: 13px; }
+.text-green { color: var(--success); }
+.text-red { color: var(--danger); }
+
+/* Buttons */
+.btn-submit {
+  width: 100%; padding: 16px; border-radius: 14px; border: none;
+  font-size: 16px; font-weight: 700; color: white; cursor: pointer;
+  transition: transform 0.1s; margin-top: 20px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-submit:active { transform: scale(0.98); }
+.btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+
+.btn-green { background: var(--success); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
+.btn-red { background: var(--danger); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3); }
+
+/* Checkbox Toggle */
+.toggle-wrapper {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  padding: 12px; background: #f8fafc; border-radius: 12px;
+}
+.toggle-checkbox { width: 18px; height: 18px; accent-color: var(--primary); }
+.toggle-text { font-size: 13px; font-weight: 600; color: var(--text-main); }

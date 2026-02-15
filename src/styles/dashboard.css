@@ -1,0 +1,214 @@
+/* --- ANIMATIONS --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-entry {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+
+/* --- DASHBOARD HEADER --- */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.02);
+}
+
+.header-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 2px;
+  letter-spacing: -0.5px;
+}
+
+.header-subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* TOMBOL INPUT CEPAT */
+.btn-quick-input {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 14px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-quick-input:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(99, 102, 241, 0.4);
+}
+
+/* --- STATS GRID --- */
+.stats-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+  margin-bottom: 32px;
+  /* Grid otomatis menyamakan tinggi kolom, tapi child harus height 100% */
+  align-items: stretch; 
+}
+
+/* 1. ATM CARD (Luxury Gradient) */
+.atm-card {
+  background-color: #6366f1; /* Fallback */
+  background: linear-gradient(120deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+  background-size: 200% 200%;
+  animation: gradientMove 6s ease infinite;
+  
+  color: white;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 15px 35px rgba(168, 85, 247, 0.35);
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  /* FIX HEIGHT DISINI */
+  min-height: 200px; 
+  height: 100%; /* Agar full mengisi grid cell */
+  
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin-bottom: 0 !important;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.atm-header { display: flex; justify-content: space-between; align-items: flex-start; z-index: 2; position: relative; }
+.icon-blur-bg { background: rgba(255,255,255,0.2); padding: 10px; border-radius: 14px; backdrop-filter: blur(10px); }
+.atm-badge { background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 30px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
+
+.atm-label { opacity: 0.9; font-size: 14px; font-weight: 500; margin-bottom: 8px; z-index: 2; position: relative; }
+.atm-balance { font-size: 36px; font-weight: 800; letter-spacing: -1px; z-index: 2; position: relative; text-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+/* Decoration Circle */
+.atm-deco { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.1); z-index: 1; pointer-events: none; }
+.deco-1 { width: 150px; height: 150px; top: -50px; right: -50px; }
+.deco-2 { width: 100px; height: 100px; bottom: -20px; left: -20px; }
+
+/* 2. STAT CARDS (Income & Expense) */
+.stat-card {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+  /* FIX HEIGHT DISINI JUGA */
+  min-height: 200px; /* Samakan dengan ATM Card */
+  height: 100%;      /* Agar full mengisi grid cell */
+  
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0 !important;
+}
+
+.stat-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 6px;
+}
+.stat-card.income-card::after { background: var(--success); }
+.stat-card.expense-card::after { background: var(--danger); }
+
+.stat-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.06); }
+
+.stat-icon-wrapper {
+  width: 56px; height: 56px; border-radius: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.stat-card:hover .stat-icon-wrapper { transform: scale(1.15) rotate(5deg); }
+
+.stat-icon-wrapper.income { background: #ecfdf5; color: var(--success); }
+.stat-icon-wrapper.expense { background: #fef2f2; color: var(--danger); }
+
+.stat-label { font-size: 13px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.stat-value { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: var(--text-main); }
+
+/* --- CONTENT GRID --- */
+.dashboard-grid { display: grid; gap: 24px; grid-template-columns: 1fr; }
+
+/* CHART CARD */
+.chart-card {
+  background: white; border-radius: 24px; padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.03);
+}
+
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.section-title { font-weight: 800; display: flex; align-items: center; gap: 10px; font-size: 18px; color: var(--text-main); }
+.see-all-link { font-size: 13px; color: var(--primary); font-weight: 700; text-decoration: none; background: #eff6ff; padding: 8px 16px; border-radius: 12px; transition: 0.2s; }
+.see-all-link:hover { background: var(--primary); color: white; }
+
+/* TRANSACTION LIST */
+.list-card {
+  background: white; border-radius: 24px; padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.03);
+}
+
+.transactions-list { display: flex; flex-direction: column; gap: 12px; }
+
+.transaction-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px; border-radius: 16px;
+  background: #f8fafc; border: 1px solid transparent;
+  transition: all 0.2s ease; cursor: pointer;
+}
+
+.transaction-item:hover {
+  background: white; border-color: var(--primary);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.1);
+  transform: translateX(4px);
+}
+
+.t-info { display: flex; align-items: center; gap: 16px; }
+.t-category { font-weight: 700; font-size: 15px; color: var(--text-main); margin-bottom: 2px; }
+.t-date { color: var(--text-muted); font-size: 12px; font-weight: 500; }
+.t-amount { font-weight: 700; font-size: 15px; }
+.t-amount.income { color: var(--success); }
+.t-amount.expense { color: var(--danger); }
+
+/* MEDIA QUERIES */
+@media (min-width: 768px) {
+  /* Kolom ATM card dibuat 1.4fr biar sedikit lebih lebar, sisanya 1fr */
+  .stats-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+  .dashboard-grid { grid-template-columns: 2fr 1.2fr; }
+}
+@media (max-width: 768px) {
+  .dashboard-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .btn-quick-input { width: 100%; justify-content: center; }
+  .atm-card { min-height: 180px; }
+}

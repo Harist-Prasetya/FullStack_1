@@ -1,0 +1,437 @@
+:root {
+  --primary: #6366f1; /* Indigo */
+  --primary-dark: #4338ca;
+  --secondary: #ec4899; /* Pink */
+  --success: #10b981; /* Green */
+  --danger: #ef4444; /* Red */
+  --bg-color: #f8fafc;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --card-bg: #ffffff;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased; /* Space untuk menu bawah */
+}
+
+/* --- UTILITY CLASSES SEDERHANA --- */
+.container {
+  max-width: 480px; /* Ukuran HP */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+.flex { display: flex; align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: 8px; }
+.gap-4 { gap: 16px; }
+.text-center { text-align: center; }
+.font-bold { font-weight: 700; }
+.text-sm { font-size: 0.875rem; }
+.text-muted { color: var(--text-muted); }
+
+/* --- SPESIFIK: ATM CARD --- */
+.atm-card {
+  background: linear-gradient(135deg, var(--primary) 0%, #8b5cf6 100%);
+  color: white;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.4);
+  margin-bottom: 24px;
+  transition: transform 0.2s;
+}
+
+.atm-card:active {
+  transform: scale(0.98);
+}
+
+/* --- SPESIFIK: SUMMARY BOX --- */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.summary-item {
+  padding: 16px;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary-income { background-color: #d1fae5; color: var(--success); }
+.summary-expense { background-color: #fee2e2; color: var(--danger); }
+
+/* --- SPESIFIK: TRANSACTION LIST --- */
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.income-theme { background: #d1fae5; color: var(--success); }
+.expense-theme { background: #fee2e2; color: var(--danger); }
+
+/* --- SPESIFIK: NAVIGATION (Floating) --- */
+.bottom-nav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 12px 30px;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 400px;
+  z-index: 100;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  transition: color 0.3s;
+}
+
+.nav-item:hover, .nav-item.active {
+  color: var(--primary);
+}
+
+.nav-btn-main {
+  background: var(--primary);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -30px; /* Efek tombol keluar */
+  box-shadow: 0 8px 15px rgba(99, 102, 241, 0.4);
+  border: 4px solid var(--bg-color);
+}
+
+:root {
+  /* ... variabel lama tetap ada ... */
+  --primary: #6366f1;
+  --secondary: #ec4899;
+  --success: #10b981;
+  --danger: #ef4444;
+  --bg-color: #f1f5f9;
+  --sidebar-width: 250px; /* Lebar Sidebar Desktop */
+}
+
+/* --- TOAST NOTIFICATION (Modern Popup) --- */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 300px;
+  border-left: 5px solid;
+  animation: slideIn 0.3s ease-out forwards;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.toast.success { border-color: var(--success); color: #064e3b; }
+.toast.error { border-color: var(--danger); color: #7f1d1d; }
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* --- LAYOUT RESPONSIF (Mobile vs Desktop) --- */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar (Hidden di Mobile) */
+.sidebar {
+  display: none; 
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  padding-bottom: 100px; /* Space untuk bottom nav mobile */
+  width: 100%;
+  max-width: 100%; /* Override max-width container lama */
+}
+
+.mobile-nav {
+  display: flex; /* Default tampil di mobile */
+}
+
+/* --- DESKTOP VIEW (Layar > 768px) --- */
+@media (min-width: 768px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    width: var(--sidebar-width);
+    background: white;
+    border-right: 1px solid #e2e8f0;
+    padding: 20px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+
+  .main-content {
+    padding: 40px;
+    padding-bottom: 40px; /* Hapus space bottom nav */
+    background-color: var(--bg-color);
+    overflow-y: auto;
+  }
+
+  .mobile-nav {
+    display: none !important; /* Sembunyikan Nav Bawah di Desktop */
+  }
+
+  /* Grid System untuk Dashboard Desktop */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Kiri Lebar, Kanan Sempit */
+    gap: 24px;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Kolom sejajar */
+    gap: 20px;
+  }
+}
+
+/* Utility Link Sidebar */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #64748b;
+  text-decoration: none;
+  margin-bottom: 4px;
+  transition: all 0.2s;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+  background: #e0e7ff;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* --- ANALYTICS SPECIFIC GRID --- */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.charts-row-1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.charts-row-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+/* DESKTOP LAYOUT */
+@media (min-width: 1024px) {
+  .kpi-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 Kartu sejajar */
+  }
+
+  .charts-row-1 {
+    grid-template-columns: 2fr 1fr; /* Grafik Besar (Kiri) + Pie Chart (Kanan) */
+  }
+
+  .charts-row-2 {
+    grid-template-columns: 1fr 1fr; /* 2 Grafik Sejajar */
+  }
+}
+
+.chart-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.festive-title {
+  font-weight: 800; /* Sedikit dikurangi dari 900 biar ga terlalu tebal */
+  background: linear-gradient(to right, #6366f1, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px; /* UBAH INI: Dari -0.5px jadi 0.5px biar ga dempet */
+  line-height: 1.2; /* Tambah ruang vertikal */
+}
+
+/* 2. Container Kontrol (Background kaca/gelas) */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.8); /* Sedikit lebih solid */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px; /* Radius lebih bulat */
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.05); 
+}
+
+/* 3. Tombol Toggle (Bulanan/Tahunan) */
+.toggle-container {
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 50px; /* Bentuk kapsul */
+  display: flex;
+  gap: 4px;
+}
+
+.toggle-btn {
+  padding: 8px 16px;
+  border-radius: 40px;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #64748b;
+  background: transparent;
+}
+
+.toggle-btn.active {
+  background: white;
+  color: var(--primary);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25);
+  transform: scale(1.05); /* Sedikit membesar saat aktif */
+}
+
+/* 4. Date Navigator (Panah & Tanggal) */
+.date-nav {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 6px 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.nav-arrow {
+  background: #eff6ff;
+  color: var(--primary);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.nav-arrow:hover {
+  background: #e0e7ff;
+}
+
+.date-display {
+  font-family: 'Inter', monospace; /* Sedikit nuansa tech */
+  font-weight: 700;
+  color: #1e293b;
+  min-width: 140px;
+  text-align: center;
+  font-size: 15px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #cb16f9, #ef44d2);
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.4);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #d53cfb, #dc26a2);
+  box-shadow: 0 0 18px rgba(249, 115, 22, 0.8);
+}
